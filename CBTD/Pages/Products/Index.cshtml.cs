@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace CBTD.Pages.Products
 {
-	public class IndexModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly UnitOfWork _unitOfWork;
         public IEnumerable<Product> ObjProductList;

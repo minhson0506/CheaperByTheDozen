@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataAccess.Data;
 using DataAccess.Models;
+using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,14 +13,14 @@ namespace CBTD.Pages.Manufacturers
     public class UpsertModel : PageModel
     {
 
-        private readonly ApplicationDbContext _db;
+        private readonly UnitOfWork _unitOfWork;
         [BindProperty]  //synchonizes form fields with values in code behind
         public Manufacturer objManufacturer { get; set; }
 
 
-        public UpsertModel(ApplicationDbContext db)  //dependency injection
+        public UpsertModel(UnitOfWork unitOfWork)  //dependency injection
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult OnGet(int? id)
@@ -29,7 +30,7 @@ namespace CBTD.Pages.Manufacturers
             //edit mode
             if (id != 0)
             {
-                objManufacturer = _db.Manufacturers.Find(id);
+                objManufacturer = _unitOfWork.Manufacturer.GetById(id);
             }
 
             if (objManufacturer == null)
@@ -37,7 +38,6 @@ namespace CBTD.Pages.Manufacturers
                 return NotFound();
             }
 
-            //create new mode
             return Page();
         }
 
@@ -51,16 +51,16 @@ namespace CBTD.Pages.Manufacturers
             //if this is a new category
             if (objManufacturer.Id == 0)
             {
-                _db.Manufacturers.Add(objManufacturer);
+                _unitOfWork.Manufacturer.Add(objManufacturer);
                 TempData["success"] = "Manufacturer added Successfully";
             }
             //if category exists
             else
             {
-                _db.Manufacturers.Update(objManufacturer);
+                _unitOfWork.Manufacturer.Update(objManufacturer);
                 TempData["success"] = "Manufacturer updated Successfully";
             }
-            _db.SaveChanges();
+            _unitOfWork.Commit();
 
             return RedirectToPage("./Index");
         }
