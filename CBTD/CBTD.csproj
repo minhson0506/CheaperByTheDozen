@@ -30,9 +30,13 @@
     <Folder Include="Pages\Categories\" />
     <Folder Include="Pages\Manufacturers\" />
     <Folder Include="Pages\Products\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Pages\Categories\Template.cshtml" />
+    <Content Remove="wwwroot\images\" />
+    <Content Remove="wwwroot\images\products\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">

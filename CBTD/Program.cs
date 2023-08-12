@@ -10,10 +10,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
     builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8,1,0)
     )));
 
-//builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-//    builder.Configuration.GetConnectionString("DefaultConnection")
-//));
-
 builder.Services.AddScoped<UnitOfWork>();
 var app = builder.Build();
 
