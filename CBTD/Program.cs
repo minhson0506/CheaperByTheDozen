@@ -1,6 +1,8 @@
-﻿using DataAccess.Data;
+using DataAccess.Data;
 using Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using CBTD.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(
     builder.Configuration.GetConnectionString("DefaultConnection"), new MySqlServerVersion(new Version(8,1,0)
     )));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<UnitOfWork>();
 var app = builder.Build();
