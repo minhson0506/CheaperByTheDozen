@@ -20,6 +20,7 @@ namespace Infrastructure
         private IGenericRepository<Manufacturer> _Manufacturer;
         private IGenericRepository<Product> _Product;
         private IGenericRepository<ApplicationUser> _ApplicationUser;
+        private IGenericRepository<ShoppingCart> _ShoppingCard;
 
 
         //ADD ADDITIONAL MODELS HERE
@@ -77,6 +78,19 @@ namespace Infrastructure
                 }
 
                 return _ApplicationUser;
+            }
+        }
+
+        public IGenericRepository<ShoppingCart> ShoppingCart
+        {
+            get
+            {
+                if (_ShoppingCard == null)
+                {
+                    _ShoppingCard = new GenericRepository<ShoppingCart>(_dbContext);
+                }
+
+                return _ShoppingCard;
             }
         }
 
