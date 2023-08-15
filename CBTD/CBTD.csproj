@@ -32,6 +32,8 @@
     <None Remove="Pages\Products\" />
     <None Remove="Pages\Users\" />
     <None Remove="Pages\Roles\" />
+    <None Remove="Pages\Cart\" />
+    <None Remove="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Pages\Categories\" />
@@ -41,6 +43,8 @@
     <Folder Include="wwwroot\images\products\" />
     <Folder Include="Pages\Users\" />
     <Folder Include="Pages\Roles\" />
+    <Folder Include="Pages\Cart\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Pages\Categories\Template.cshtml" />

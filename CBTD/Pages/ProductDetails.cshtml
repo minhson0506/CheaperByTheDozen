@@ -2,9 +2,10 @@
 @model CBTD.Pages.ProductDetailsModel
 @{
 }
+
 <form method="post">
-    @*<input hidden asp-for="ProductId" />*@
-    <div class="card  container pt-4">
+    <input hidden asp-for="@Model.objProduct.Id" />
+    <input hidden asp-for="@Model.objCart.Id" />    <div class="card  container pt-4">
         <div class="card-header bg-primary text-light ml-0  row ">
             <div class="col-12 col-md-6">
                 <h1 class="text-white-50">@Model.objProduct.Name</h1>
@@ -64,12 +65,12 @@
                             <div class="col-8 text-primary"></div>
                             <div class="col-2 text-primary"><h4>Count</h4></div>
                             <div class="col-2">
-                                @*   <input asp-for="Count" class="form-control" />*@
+                                <input asp-for="txtCount" class="form-control" />
                             </div>
                         </div>
                     </div>
                     <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                        <img src="@Model.objProduct.ImageUrl" width="100%" class="rounded"/>
+                        <img src="@Model.objProduct.ImageUrl" width="100%" class="rounded" />
                     </div>
                 </div>
             </div>
@@ -80,7 +81,18 @@
                     <a class="btn btn-success form-control " style="height:50px;" asp-page="Index">Back to Home</a>
                 </div>
                 <div class="col-12 col-md-6 pb-1">
-                    <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;">Add to Cart</button>
+                    @if (TempData["UserLoggedIn"] != null)
+                    {
+                        <div class="col-12 col-md-6 pb-1">
+                            <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;">Add to Cart</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-12 col-md-6 pb-1">
+                            <a class="btn btn-danger form-control" style="height:50px" asp-area="Identity" asp-page="/Account/Login">Login to Add to Cart</a>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

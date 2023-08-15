@@ -1,9 +1,6 @@
-﻿using System;
-using DataAccess.Data;
+﻿using DataAccess.Data;
 using DataAccess.Models;
 using Infrastructure.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
 
 namespace Infrastructure
 {
@@ -21,6 +18,8 @@ namespace Infrastructure
         private IGenericRepository<Product> _Product;
         private IGenericRepository<ApplicationUser> _ApplicationUser;
         private IGenericRepository<ShoppingCart> _ShoppingCard;
+        private IOrderHeaderRepository<OrderHeader> _OrderHeader;
+        private IGenericRepository<OrderDetails> _OrderDetails;
 
 
         //ADD ADDITIONAL MODELS HERE
@@ -94,6 +93,31 @@ namespace Infrastructure
             }
         }
 
+        public IOrderHeaderRepository<OrderHeader> OrderHeader
+        {
+            get
+            {
+                if (_OrderHeader == null)
+                {
+                    _OrderHeader = new OrderHeaderRepository(_dbContext);
+                }
+
+                return _OrderHeader;
+            }
+        }
+
+        public IGenericRepository<OrderDetails> OrderDetails
+        {
+            get
+            {
+                if (_OrderDetails == null)
+                {
+                    _OrderDetails = new GenericRepository<OrderDetails>(_dbContext);
+                }
+
+                return _OrderDetails;
+            }
+        }
         //ADD ADDITIONAL METHODS FOR EACH MODEL (similar to Category) HERE
 
         public int Commit()

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using System.Linq.Expressions;
 using Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using DataAccess.Data;
+using DataAccess.Models;
 
 namespace Infrastructure
 {
@@ -241,6 +241,19 @@ namespace Infrastructure
             }
 
         }
+
+        public int DecrementCount(ShoppingCart shoppingCart, int count)
+        {
+            shoppingCart.Count -= count;
+            return shoppingCart.Count;
+        }
+
+        public int IncrementCount(ShoppingCart shoppingCart, int count)
+        {
+            shoppingCart.Count += count;
+            return shoppingCart.Count;
+        }
+
 
     }
 

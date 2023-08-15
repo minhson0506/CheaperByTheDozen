@@ -17,6 +17,8 @@ namespace DataAccess.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
+        public DbSet<OrderHeader> OrderHeaders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
 
         //insterting seed data when Model is physically created in the DB the first time
         protected override void OnModelCreating(ModelBuilder modelBuilder)
